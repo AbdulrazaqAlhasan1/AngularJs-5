@@ -19,53 +19,28 @@ app.config(function($routeProvider) {
     });
 
         // Horizontal Controller
-        app.controller("horizontalController", function($scope) {
-
-        $scope.products = [
-            { image: "images/picture.jpg", name: "Bild Stereo  T-Shirt", price: "$500,00", rating: 4.5, totalratings: 7 },
-            { image: "images/p-2.jpg", name: "First Stereo  T-Shirt", price: "$100,00", rating: 6.3, totalratings: 6 },
-            { image: "images/p-3.jpg", name: "Other Stereo  T-Shirt", price: "$200,00", rating: 2.5, totalratings: 5 },
-            { image: "images/p-4.jpg", name: "Picture Stereo  T-Shirt", price: "$300,00", rating: 1.5, totalratings: 2 },
-            { image: "images/p-5.jpg", name: "My Stereo  T-Shirt", price: "$400,00", rating: 3.8, totalratings: 8 },
-            { image: "images/p-6.jpg", name: " Stereo  T-Shirt", price: "$500,00", rating: 5.6, totalratings: 5 },
-            { image: "images/p-7.jpg", name: "Img Stereo  T-Shirt", price: "$600,00", rating: 2.5, totalratings: 7 },
-            { image: "images/p-8.jpg", name: "Cat Stereo  T-Shirt", price: "$700,00", rating: 7.6, totalratings: 5 },
-            { image: "images/p-9.jpg", name: "Sky Stereo  T-Shirt", price: "$800,00", rating: 9.5, totalratings: 9 },
-            { image: "images/p-10.jpg", name: "Cy Stereo  T-Shirt", price: "$900,00", rating: 7.4, totalratings: 8 },
-            { image: "images/p-11.jpg", name: "Dream Stereo  T-Shirt", price: "$500,00", rating: 3.3, totalratings: 5 },
-            { image: "images/p-12.jpg", name: "Helix Stereo  T-Shirt", price: "$500,00", rating: 2.7, totalratings: 5 }
-        ];
+        app.controller("horizontalController", function($rootScope, $http) {
 
         const starsTotal = 5;
 
-        $scope.rating = function (input) {
+        $http.get("http://localhost:5000/api/products").then((res) => $rootScope.products = res.data);
+
+        $rootScope.rating = function (input) {
             return `${Math.round(((input / starsTotal) * 100) / 10) * 10}%`;
         }
     })
         
 
         // Vertical Controller
-        app.controller("verticalController", function($scope) {
-            $scope.products = [
-                { image: "images/picture.jpg", name: "Bild Stereo  T-Shirt", price: "$500,00", rating: 4.5, totalratings: 7 },
-                { image: "images/p-2.jpg", name: "First Stereo  T-Shirt", price: "$100,00", rating: 6.3, totalratings: 6 },
-                { image: "images/p-3.jpg", name: "Other Stereo  T-Shirt", price: "$200,00", rating: 2.5, totalratings: 5 },
-                { image: "images/p-4.jpg", name: "Picture Stereo  T-Shirt", price: "$300,00", rating: 1.5, totalratings: 2 },
-                { image: "images/p-5.jpg", name: "My Stereo  T-Shirt", price: "$400,00", rating: 3.8, totalratings: 8 },
-                { image: "images/p-6.jpg", name: " Stereo  T-Shirt", price: "$500,00", rating: 5.6, totalratings: 5 },
-                { image: "images/p-7.jpg", name: "Img Stereo  T-Shirt", price: "$600,00", rating: 2.5, totalratings: 7 },
-                { image: "images/p-8.jpg", name: "Cat Stereo  T-Shirt", price: "$700,00", rating: 7.6, totalratings: 5 },
-                { image: "images/p-9.jpg", name: "Sky Stereo  T-Shirt", price: "$800,00", rating: 9.5, totalratings: 9 },
-                { image: "images/p-10.jpg", name: "Cy Stereo  T-Shirt", price: "$900,00", rating: 7.4, totalratings: 8 },
-                { image: "images/p-11.jpg", name: "Dream Stereo  T-Shirt", price: "$500,00", rating: 3.3, totalratings: 5 },
-                { image: "images/p-12.jpg", name: "Helix Stereo  T-Shirt", price: "$500,00", rating: 2.7, totalratings: 5 }
-            ];
+        app.controller("verticalController", function($rootScope, $http) {
 
 
             // ratings
             const starsTotal = 5;
+
+            $http.get("http://localhost:5000/api/products").then((res) => $rootScope.products = res.data);
     
-            $scope.rating = function (input) {
+            $rootScope.rating = function (input) {
                 return `${Math.round(((input / starsTotal) * 100) / 10) * 10}%`;
             }
 

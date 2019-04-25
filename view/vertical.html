@@ -1,29 +1,24 @@
-<div class="col-mg-12">
-    <div class="card-deck">
-        <div class="col-md-12 mb-4" class="card-deck"
-            ng-repeat="product in products | filter: searchText | orderBy:sortColumn | limitTo:rowLimits">
-            <div class="card">
-                <img ng-src="{{ product.image }}" class="card-img-top">
-                <div class="imginfo">
-                    <div>
-                        <h6 class="card-title">{{ product.name }}</h6>
-                    </div>
-                    <div>
-                        <span id="price">{{ product.price }}</span>
-                        <div class="stars-outer">
-                            <div class="stars-inner" ng-style="{ 'width': rating(product.rating) }">
-                            </div>
-                        </div>
-                    </div>
-                </div>
+<div class="card mb-6" style="max-width: auto;">
+    <div class="row no-gutters"
+      ng-repeat="product in products | filter: searchText | orderBy:sortColumn | limitTo:rowLimits">
+      <div class="col-md-4">
+        <img ng-src="{{ product.image }}" class="card-img" alt="...">
+      </div>
+      <div class="col-md-8">
+        <div class="card-body">
+          <h5 class="card-title">{{ product.name }}</h5>
+          <span id="price">{{ product.price }}</span>
+          <div class="stars-outer">
+            <div class="stars-inner" ng-style="{ 'width': rating(product.rating) }">
             </div>
+          </div>
         </div>
+      </div>
     </div>
-</div>
-
-<div>
-    <div class="scrollTop">
+  
+    <div>
+      <div class="scrollTop">
         <a href="#">Back To Top</a>
+      </div>
+  
     </div>
-
-</div>
